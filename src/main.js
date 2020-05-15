@@ -8,9 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Globally required components
 import AppHeader from './views/layout/AppHeader.vue';
-import AppFooter from './views/layout/AppFooter.vue';
 Vue.component('app-header', AppHeader);
-Vue.component('app-footer', AppFooter);
 Vue.use(VueChatScroll);
 
 Vue.config.productionTip = false;
