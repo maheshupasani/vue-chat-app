@@ -3,11 +3,14 @@
         <span class="newMessageText">New Message (Press Enter to send)</span>
         <form @submit.prevent="sendMessage">
             <div class="form-group">
-                <input type="text" name="message" class="form-control input-form" v-model="newMessage"
-                />
+                <input
+                type="text"
+                name="message"
+                class="form-control input-form"
+                v-model="newMessage"
+                autocomplete="off"/>
                 <p class="text-danger" v-if="error">{{ error }}</p>
             </div>
-            <!-- <button class="btn btn-primary" type="submit" name="send">Send</button> -->
         </form>
     </div>
 </template>
