@@ -1,13 +1,11 @@
 <template>
-	<div class="container chat">
-		<h2 class="text-primary text-center">
-			Chat Window
-		</h2>
-		<div class="card" style="-webkit-box-shadow: 3px 10px 21px -9px rgba(0,0,0,0.75);-moz-box-shadow: 3px 10px 21px -9px rgba(0,0,0,0.75);box-shadow: 3px 10px 21px -9px rgba(0,0,0,0.75);">
+  <div class="container chat">
+	  <h2 class="text-primary text-center">Chat Window</h2>
+		<div class="card custom-card">
 			<div class="card-body">
-				<p class="text-secondary nomessages" v-if="messages.length < 0">[No messages yet!]</p>
+				<p class="text-secondary nomessages" v-if="changedMessages.length < 0">[No messages yet!]</p>
 				<div class="messages" v-chat-scroll="{always:false,smooth:true}">
-					<div v-for="message in messages" :key="message.id">
+					<div v-for="message in changedMessages" :key="message.id">
 						<div class="col-md-12">
 							<span class="text-info">{{ message.name | capitalize }}: </span>
 							<span>{{ message.message }}</span>
@@ -63,30 +61,46 @@ export default {
 				}
 			})
 		})
-	}
+	},
+	computed: {
+		changedMessages:function(){
+			let allMessages = [];
+			this.messages.map(message => {
+				if(message.name != ""){
+					allMessages.push(message);
+				}
+			});
+			return allMessages;
+		}
+	},
 }
 </script>
 <style>
-    .card-body{
-        text-align: left;
-    }
-    .chat h2{
-        font-size: 40px;
-        margin-bottom: 0px;
-    }
-    .chat h5{
-        margin-top: 0;
-        margin-bottom: 25px;
-    }
-    .chat span{
-        font-size: 18px;
-    }
-    .chat .time{
-        display: block;
-        font-size: 10px;
-    }
-    .messages{
-        max-height: 300px;
-        overflow: auto;
-    }
+	.custom-card{
+		-webkit-box-shadow: 3px 10px 21px -9px rgba(0,0,0,0.75);
+		-moz-box-shadow: 3px 10px 21px -9px rgba(0,0,0,0.75);
+		box-shadow: 3px 10px 21px -9px rgba(0,0,0,0.75);
+	}
+	.card-body{
+			text-align: left;
+	}
+	.chat h2{
+			font-size: 40px;
+			margin-bottom: 0px;
+	}
+	.chat h5{
+			margin-top: 0;
+			margin-bottom: 25px;
+	}
+	.chat span{
+			font-size: 18px;
+	}
+	.chat .time{
+			display: block;
+			font-size: 10px;
+	}
+	.messages{
+			max-height: 300px;
+			overflow: auto;
+	}
 </style>
