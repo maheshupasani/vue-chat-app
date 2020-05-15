@@ -27,10 +27,6 @@ const routes = [
         }
       }
     ]
-  },
-  {
-    path: "*",
-    redirect: import("../views/404.vue"),
   }
 ];
 
